@@ -1,11 +1,9 @@
 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-1">
 
-  <!-- Left: grid -->
   <div class="shrink-0">
     <app-grid [matrix]="matrix()" [mutantCells]="mutantCells()" />
   </div>
 
-  <!-- Right: image -->
   <div class="flex flex-col items-center">
     @if (isMutant()) {
       <img src="ismutant.png" alt="ADN Mutante" class="w-44 h-auto object-contain drop-shadow-md" />
