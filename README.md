@@ -33,10 +33,11 @@ La interfaz resalta visualmente las células mutantes encontradas y muestra un r
 src/app/
 ├── components/
 │   ├── banner/     → Banner de resultado (mutante / humano)
-│   ├── grid/       → Visualización de la matriz de ADN
 │   ├── header/     → Encabezado de la app
 │   ├── input/      → Formulario para ingresar la secuencia
 │   └── result/     → Vista final con las células resaltadas
+├── utils/
+│   └── dna.utils.ts  → Función isMutant para detectar mutantes
 ├── app.routes.ts
 ├── app.config.ts
 └── app.ts
@@ -50,6 +51,48 @@ src/app/
 - [Tailwind CSS v4](https://tailwindcss.com/)
 - [Vitest](https://vitest.dev/) para tests
 - TypeScript 5.9
+
+---
+
+## 🔬 Función `isMutant(dna: string[]): boolean`
+
+Esta es la función central que detecta si una secuencia de ADN pertenece a un mutante.
+
+### Uso
+
+```typescript
+import { isMutant } from './utils/dna.utils';
+
+const dnaSequence = [
+  'ATGCGA',
+  'CAGTGC',
+  'TTATGT',
+  'AGAAGG',
+  'CCCCTA',  // ← 4 C's iguales detectadas
+  'TCACTG',
+];
+
+const result = isMutant(dnaSequence); // true
+```
+
+### Parámetros
+
+- **`dna: string[]`** — Array de strings donde cada string representa una fila de la matriz NxN
+  - Solo acepta bases válidas: `A`, `T`, `G`, `C`
+  - La matriz debe ser cuadrada (N x N)
+  - No distingue entre mayúsculas y minúsculas
+
+### Retorno
+
+- **`true`** — Si encuentra al menos una secuencia de 4 bases iguales en cualquier dirección
+- **`false`** — Si no encuentra secuencias o la entrada es inválida
+
+### Direcciones analizadas
+
+- ➡️ **Horizontal** — 4 bases iguales en la misma fila
+- ⬇️ **Vertical** — 4 bases iguales en la misma columna
+- ↘️ **Diagonal derecha-abajo** — 4 bases iguales en diagonal
+- ↙️ **Diagonal izquierda-abajo** — 4 bases iguales en diagonal inversa
 
 ---
 

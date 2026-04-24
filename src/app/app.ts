@@ -1,9 +1,9 @@
 import { Component, computed, signal } from '@angular/core';
 import { Header } from "./components/header/header";
-import { Grid } from "./components/grid/grid";
 import { Result } from "./components/result/result";
 import { InputRow } from "./components/input/input";
 import { Banner } from "./components/banner/banner";
+import { isMutant } from "./utils/dna.utils";
 
 const VALID_BASES = new Set(['A', 'T', 'G', 'C']);
 
@@ -16,7 +16,7 @@ interface DnaSnapshot {
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  imports: [Header, Grid, Result, InputRow, Banner],
+  imports: [Header, Result, InputRow, Banner],
 })
 export class App {
   dna = signal<string[]>([
@@ -107,7 +107,7 @@ export class App {
 
   snapshot = signal<DnaSnapshot | null>(null);
 
-  isMutant = computed(() => this.mutantCells().size > 0);
+  isMutant = computed(() => isMutant(this.dna()));
 
   isValid = computed(() => this.validationErrors().length === 0);
 
