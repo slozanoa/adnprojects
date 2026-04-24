@@ -1,0 +1,22 @@
+<div class="flex items-center gap-2">
+  <span class="text-xs text-slate-400 font-mono w-5 text-right shrink-0">{{ index + 1 }}</span>
+  <input
+    [value]="row"
+    (keydown)="blockInvalidKey($event)"
+    (input)="onInput($event)"
+    placeholder="Ej: ATGCGA"
+    class="flex-1 border-2 rounded-lg px-3 py-2 font-mono text-sm tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors placeholder:text-gray-300"
+    [class.border-red-400]="hasError && row.length > 0"
+    [class.border-gray-200]="!(hasError && row.length > 0)"
+  />
+  <button
+    (click)="remove.emit()"
+    [disabled]="!canRemove"
+    class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+    title="Eliminar fila"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+    </svg>
+  </button>
+</div>

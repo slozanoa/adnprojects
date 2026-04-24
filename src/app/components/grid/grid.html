@@ -1,0 +1,11 @@
+<div class="flex flex-col items-center gap-1.5 mb-6">
+  @for (row of matrix(); track trackRow($index, row); let r = $index) {
+    <div class="flex gap-1.5">
+      @for (cell of row; track trackCell($index, cell); let c = $index) {
+        <div [class]="cellClasses(r, c, cell)">
+          {{ cell }}
+        </div>
+      }
+    </div>
+  }
+</div>
