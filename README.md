@@ -109,5 +109,5 @@ Los artefactos quedan optimizados en la carpeta `dist/`.
 
 ---
 
-<p align="center">🧬 por Santiago Lozano
+<p align="center">🧬 Santiago Lozano
 </p>
